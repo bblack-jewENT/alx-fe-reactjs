@@ -1,13 +1,13 @@
-import Header from './src/Header';
+import HeaderContent from './src/Header.jsx';
 
-function Header() {
+function HeaderContent() {
     return (
         <header>
           <h1>My Favorite Cities</h1>
-          <header />
+          <HeaderContent />
         </header>
     )
 }
 
-export default Header;
+export default HeaderContent;
 
