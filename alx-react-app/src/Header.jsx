@@ -1,3 +1,5 @@
+import Header from './src/Header';
+
 function Header() {
     return (
         <header>
