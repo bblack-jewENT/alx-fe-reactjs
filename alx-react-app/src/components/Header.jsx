@@ -1,4 +1,3 @@
-import Header from './components/Header.jsx';
 
 function Header() {
     return (
@@ -8,5 +7,5 @@ function Header() {
     )
 }
 
-
+export default Header;
 

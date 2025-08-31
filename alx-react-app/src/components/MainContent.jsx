@@ -1,4 +1,3 @@
-import MainContent from './components/MainContent.jsx';
 
 function MainContent() {
     return (
@@ -7,4 +6,6 @@ function MainContent() {
         </main>
     )
 };
+
+export default MainContent;
 

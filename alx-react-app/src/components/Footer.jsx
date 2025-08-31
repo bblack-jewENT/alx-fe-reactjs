@@ -1,4 +1,3 @@
-import Footer from './components/Footer.jsx';
 
 function Footer() {
     return (
@@ -8,3 +7,4 @@ function Footer() {
     )
 }
 
+export default Footer;

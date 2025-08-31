@@ -1,4 +1,3 @@
-import WelcomeMessage from './components/WelcomeMessage.jsx';
 
 function WelcomeMessage() {
     return (
@@ -10,6 +9,7 @@ function WelcomeMessage() {
     );  
 }
 
+export default WelcomeMessage;
 
 
 
