@@ -4,6 +4,7 @@ function FooterContent() {
     return (
         <footer>
             <p>© 2023 City Lovers</p>
+            <FooterContent />
         </footer>
     )
 }
