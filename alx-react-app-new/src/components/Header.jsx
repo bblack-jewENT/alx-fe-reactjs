@@ -3,8 +3,8 @@ function Header() {
     <header>
       <h1
         style={{
-          color: "lightblue",
-          fontFamily: "poppins",
+          backgroundColor: "navy",
+          color: "white",
           textAlign: "center",
         }}
       >
