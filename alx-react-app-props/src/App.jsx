@@ -1,6 +1,6 @@
-import React from 'react';
-import ProfilePage from './ProfilePage';
-import UserContext from './components/UserContext';
+import React from "react";
+import ProfilePage from "./components/ProfilePage";
+import UserContext from "./components/UserContext";
 
 const userData = {
   name: "Jane Doe",
@@ -9,10 +9,10 @@ const userData = {
 
 function App() {
   return (
-  <UserContext.Provider value={userData}>
-     <ProfilePage />;
-  </UserContext.Provider>
-);
+    <UserContext.Provider value={userData}>
+      <ProfilePage />
+    </UserContext.Provider>
+  );
 }
 
 export default App;
