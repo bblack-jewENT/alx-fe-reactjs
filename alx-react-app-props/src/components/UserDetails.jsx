@@ -1,3 +1,6 @@
+import React, { useContext } from "react";
+import UserContext from "./UserContext";
+
 function UserDetails({ userData }) {
   return (
     <div>
@@ -8,4 +11,5 @@ function UserDetails({ userData }) {
 }
 
 export default UserDetails;
+
 
