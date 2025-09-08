@@ -7,3 +7,7 @@ import { useState } from 'react';
        email: '',
        message: ''
      });
+
+     const handleChange = (e) => {
+       setFormData({ ...formData, [e.target.name]: e.target.value });
+     };
