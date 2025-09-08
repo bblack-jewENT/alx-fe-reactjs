@@ -17,14 +17,7 @@ const UserProfile = (props) => {
       <p>
         Age: <span style={{ fontWeight: "bold" }}>{props.age}</span>
       </p>
-      <p
-        style={{
-          color: "lightblue",
-          fontFamily: "poppins",
-          letterSpacing: "2px",
-          fontWeight: "bold",
-        }}
-      >
+      <p>
         Bio: {props.bio}
       </p>
     </div>
