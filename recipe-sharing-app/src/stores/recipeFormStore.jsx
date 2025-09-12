@@ -30,3 +30,6 @@ import { useRecipeStore } from './recipeStore';
       </form>
     );
   };
+
+export default AddRecipeForm;
+
