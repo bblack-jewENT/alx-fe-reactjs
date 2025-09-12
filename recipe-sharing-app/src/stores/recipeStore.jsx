@@ -1,27 +1,20 @@
-import create from 'zustand';
-import { useRecipeStore } from './recipeStore';
+import React from "react";
+import { useRecipeStore } from "./store";
 
-const useRecipeStore = create(set => ({
-  recipes: [],
-  addRecipe: (newRecipe) => set(state => ({ recipes: [...state.recipes, newRecipe] })),
-  setRecipes: (recipes) => set({ recipes })
-}));
+const RecipeList = () => {
+  console.log("useRecipeStore in RecipeList:", useRecipeStore);
+  const recipes = useRecipeStore((state) => state.recipes);
 
- const RecipeList = () => {
-    const recipes = useRecipeStore(state => state.recipes);
-
-    return (
-      <div>
-        {recipes.map(recipe => (
-          <div key={recipe.id}>
-            <h3>{recipe.title}</h3>
-            <p>{recipe.description}</p>
-          </div>
-        ))}
-      </div>
-    );
-  };
+  return (
+    <div>
+      {recipes.map((recipe) => (
+        <div key={recipe.id}>
+          <h3>{recipe.title}</h3>
+          <p>{recipe.description}</p>
+        </div>
+      ))}
+    </div>
+  );
+};
 
 export default RecipeList;
-
-
