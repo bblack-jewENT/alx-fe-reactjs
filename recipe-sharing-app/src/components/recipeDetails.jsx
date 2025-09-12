@@ -1,3 +1,1 @@
-  import { useRecipeStore } from './recipeStore';
-
-  
+import { useRecipeStore } from "../stores/recipeStore";
