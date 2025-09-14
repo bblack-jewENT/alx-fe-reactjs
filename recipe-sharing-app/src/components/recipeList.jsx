@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useRecipeStore } from "../stores/store";
+import { useRecipeStore } from "./recipeStore";
 import FavoriteButton from "./FavoriteButton";
 
 const RecipeList = () => {

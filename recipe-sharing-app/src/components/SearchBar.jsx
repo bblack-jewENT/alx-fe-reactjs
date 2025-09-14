@@ -1,5 +1,5 @@
 import React from "react";
-import { useRecipeStore } from "../stores/store";
+import { useRecipeStore } from "./recipeStore";
 
 const SearchBar = () => {
   const searchTerm = useRecipeStore((state) => state.searchTerm);
