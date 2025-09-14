@@ -4,6 +4,8 @@ const useRecipeStore = create((set, get) => ({
   recipes: [],
   searchTerm: "",
   filteredRecipes: [],
+  favorites: [],
+  recommendations: [],
   addRecipe: (newRecipe) =>
     set((state) => {
       const newRecipes = [...state.recipes, newRecipe];
@@ -44,12 +46,35 @@ const useRecipeStore = create((set, get) => ({
       };
     }),
   setSearchTerm: (term) =>
-    set((state) => ({
-      searchTerm: term,
-      filteredRecipes: state.recipes.filter((recipe) =>
+    set((state) => {
+      const filtered = state.recipes.filter((recipe) =>
         recipe.title.toLowerCase().includes(term.toLowerCase())
-      ),
+      );
+      console.log(
+        "Setting search term:",
+        term,
+        "Filtered recipes count:",
+        filtered.length
+      );
+      return {
+        searchTerm: term,
+        filteredRecipes: filtered,
+      };
+    }),
+  addFavorite: (recipeId) =>
+    set((state) => ({ favorites: [...state.favorites, recipeId] })),
+  removeFavorite: (recipeId) =>
+    set((state) => ({
+      favorites: state.favorites.filter((id) => id !== recipeId),
     })),
+  generateRecommendations: () =>
+    set((state) => {
+      // Mock implementation based on favorites
+      const recommended = state.recipes.filter(
+        (recipe) => state.favorites.includes(recipe.id) && Math.random() > 0.5
+      );
+      return { recommendations: recommended };
+    }),
 }));
 
 export { useRecipeStore };

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from "react";
 import { useRecipeStore } from "../stores/store";
 
@@ -30,3 +31,21 @@ const SearchBar = () => {
 };
 
 export default SearchBar;
+=======
+import React from 'react';
+import { useRecipeStore } from './recipeStore';
+
+const SearchBar = () => {
+  const setSearchTerm = useRecipeStore(state => state.setSearchTerm);
+
+  return (
+    <input
+      type="text"
+      placeholder="Search recipes..."
+      onChange={(e) => setSearchTerm(e.target.value)}
+    />
+  );
+};
+
+export default SearchBar;
+>>>>>>> 4fed41a217c3b46bb4527db88564aa6bd4aa7079
