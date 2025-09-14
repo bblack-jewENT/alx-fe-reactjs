@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import RecipeList from "./components/recipeList";
 import AddRecipeForm from "./components/recipeForm";
 import RecipeDetails from "./components/recipeDetails";
+import SearchBar from "./components/SearchBar";
 import "./App.css";
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
           path="/"
           element={
             <>
+              <SearchBar />
               <RecipeList />
               <AddRecipeForm />
             </>
