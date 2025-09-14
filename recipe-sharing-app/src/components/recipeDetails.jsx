@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useRecipeStore } from "./recipeStore";
-import EditRecipeForm from "./EditRecipeForm";
+import EditRecipeForm from "./AddRecipeForm";
 import DeleteRecipeButton from "./DeleteRecipeButton";
 
 const RecipeDetails = () => {
