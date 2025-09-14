@@ -4,11 +4,11 @@ import { useRecipeStore } from "../stores/store";
 
 const RecipeList = () => {
   console.log("useRecipeStore in RecipeList:", useRecipeStore);
-  const recipes = useRecipeStore((state) => state.recipes);
+  const filteredRecipes = useRecipeStore((state) => state.filteredRecipes);
 
   return (
     <div>
-      {recipes.map((recipe) => (
+      {filteredRecipes.map((recipe) => (
         <Link key={recipe.id} to={`/recipe/${recipe.id}`}>
           <div>
             <h3>{recipe.title}</h3>
