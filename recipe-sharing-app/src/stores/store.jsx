@@ -61,15 +61,17 @@ const useRecipeStore = create((set, get) => ({
         filteredRecipes: filtered,
       };
     }),
+  // Favorites functionality: allows users to mark recipes as favorites
   addFavorite: (recipeId) =>
     set((state) => ({ favorites: [...state.favorites, recipeId] })),
   removeFavorite: (recipeId) =>
     set((state) => ({
       favorites: state.favorites.filter((id) => id !== recipeId),
     })),
+  // Recommendations: generates a list of recommended recipes based on user's favorites
+  // Currently uses a simple mock logic: randomly selects from favorited recipes
   generateRecommendations: () =>
     set((state) => {
-      // Mock implementation based on favorites
       const recommended = state.recipes.filter(
         (recipe) => state.favorites.includes(recipe.id) && Math.random() > 0.5
       );
