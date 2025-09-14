@@ -5,6 +5,7 @@ import { useRecipeStore } from "../stores/store";
 const RecipeList = () => {
   console.log("useRecipeStore in RecipeList:", useRecipeStore);
   const filteredRecipes = useRecipeStore((state) => state.filteredRecipes);
+  console.log("RecipeList: filteredRecipes length:", filteredRecipes.length);
 
   return (
     <div>

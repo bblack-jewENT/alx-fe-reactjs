@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React from "react";
 import { useRecipeStore } from "../stores/store";
 
@@ -7,7 +6,9 @@ const SearchBar = () => {
   const setSearchTerm = useRecipeStore((state) => state.setSearchTerm);
 
   const handleChange = (e) => {
-    setSearchTerm(e.target.value);
+    const value = e.target.value;
+    console.log("SearchBar: Input changed to:", value);
+    setSearchTerm(value);
   };
 
   return (
@@ -31,21 +32,3 @@ const SearchBar = () => {
 };
 
 export default SearchBar;
-=======
-import React from 'react';
-import { useRecipeStore } from './recipeStore';
-
-const SearchBar = () => {
-  const setSearchTerm = useRecipeStore(state => state.setSearchTerm);
-
-  return (
-    <input
-      type="text"
-      placeholder="Search recipes..."
-      onChange={(e) => setSearchTerm(e.target.value)}
-    />
-  );
-};
-
-export default SearchBar;
->>>>>>> 4fed41a217c3b46bb4527db88564aa6bd4aa7079
