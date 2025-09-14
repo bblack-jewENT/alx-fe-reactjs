@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useRecipeStore } from "../stores/store";
+import FavoriteButton from "./FavoriteButton";
 
 const RecipeList = () => {
   console.log("useRecipeStore in RecipeList:", useRecipeStore);
@@ -10,12 +11,20 @@ const RecipeList = () => {
   return (
     <div>
       {filteredRecipes.map((recipe) => (
-        <Link key={recipe.id} to={`/recipe/${recipe.id}`}>
-          <div>
+        <div
+          key={recipe.id}
+          style={{
+            marginBottom: "10px",
+            border: "1px solid #ddd",
+            padding: "10px",
+          }}
+        >
+          <Link to={`/recipe/${recipe.id}`}>
             <h3>{recipe.title}</h3>
             <p>{recipe.description}</p>
-          </div>
-        </Link>
+          </Link>
+          <FavoriteButton recipeId={recipe.id} />
+        </div>
       ))}
     </div>
   );
