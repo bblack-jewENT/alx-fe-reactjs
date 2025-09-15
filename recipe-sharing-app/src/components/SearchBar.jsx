@@ -21,6 +21,7 @@ const SearchBar = () => {
         style={{
           width: "100%",
           padding: "10px",
+          marginTop: "25px",
           fontSize: "16px",
           border: "1px solid #ccc",
           borderRadius: "4px",
