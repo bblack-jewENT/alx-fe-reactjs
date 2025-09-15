@@ -21,13 +21,3 @@ const RecipeList = () => {
 };
 
 export default RecipeList;
-            <p>{recipe.description}</p>
-          </Link>
-          <FavoriteButton recipeId={recipe.id} />
-        </div>
-      ))}
-    </div>
-  );
-};
-
-export default RecipeList;
