@@ -4,23 +4,23 @@ import { useRecipeStore } from "./recipeStore";
 import FavoriteButton from "./FavoriteButton";
 
 const RecipeList = () => {
-  console.log("useRecipeStore in RecipeList:", useRecipeStore);
-  const filteredRecipes = useRecipeStore((state) => state.filteredRecipes);
-  console.log("RecipeList: filteredRecipes length:", filteredRecipes.length);
+  const recipes = useRecipeStore((state) => state.recipes);
 
   return (
     <div>
-      {filteredRecipes.map((recipe) => (
-        <div
-          key={recipe.id}
-          style={{
-            marginBottom: "10px",
-            border: "1px solid #ddd",
-            padding: "10px",
-          }}
-        >
-          <Link to={`/recipe/${recipe.id}`}>
-            <h3>{recipe.title}</h3>
+      <h2>Recipes</h2>
+      <ul>
+        {recipes.map((recipe) => (
+          <li key={recipe.id}>
+            <Link to={`/recipes/${recipe.id}`}>{recipe.title}</Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default RecipeList;
             <p>{recipe.description}</p>
           </Link>
           <FavoriteButton recipeId={recipe.id} />
