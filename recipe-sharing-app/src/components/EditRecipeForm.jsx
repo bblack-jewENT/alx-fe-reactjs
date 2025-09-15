@@ -26,7 +26,13 @@ const EditRecipeForm = ({ recipeId, onSave }) => {
   if (!recipe) return null;
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "1rem",
+        }}
+        onSubmit={handleSubmit}>
       <input
         type="text"
         value={title}
