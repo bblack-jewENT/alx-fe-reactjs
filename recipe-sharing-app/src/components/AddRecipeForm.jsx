@@ -25,10 +25,6 @@ const AddRecipeForm = () => {
         placeholder="Title"
       />
       <textarea
-        style={{
-          resize: "none",
-          height: "45px",
-        }}
         value={description}
         onChange={(e) => setDescription(e.target.value)}
         placeholder="Description"
