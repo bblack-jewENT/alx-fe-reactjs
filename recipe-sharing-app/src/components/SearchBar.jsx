@@ -14,19 +14,11 @@ const SearchBar = () => {
   return (
     <div style={{ marginBottom: "20px" }}>
       <input
+        className="searchBar-input"
         type="text"
         placeholder="Search recipes by title..."
         value={searchTerm}
         onChange={handleChange}
-        style={{
-          width: "100%",
-          padding: "10px",
-          marginTop: "25px",
-          fontSize: "16px",
-          border: "1px solid #ccc",
-          borderRadius: "4px",
-          boxSizing: "border-box",
-        }}
       />
     </div>
   );
