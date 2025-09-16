@@ -18,9 +18,13 @@
 }
 
 form {
-  display: "flex",
-  flexDirection: "column",
-  gap: "1rem",
+  display: "flex";
+  flexDirection: "column";
+  gap: "1rem";
+}
+
+input {
+  height: "45px";
 }
 
 @keyframes logo-spin {
