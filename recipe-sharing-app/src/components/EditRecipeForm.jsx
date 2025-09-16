@@ -27,11 +27,7 @@ const EditRecipeForm = ({ recipeId, onSave }) => {
 
   return (
     <form
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "1rem",
-        }}
+        className="form"
         onSubmit={handleSubmit}>
       <input
         style={{
