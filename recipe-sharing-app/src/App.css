@@ -18,28 +18,28 @@
 }
 
 form {
-  display: "flex";
-  flexDirection: "column";
-  gap: "1rem";
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 input {
-  height: "45px";
+  height: 45px;
 }
 
 textarea {
-  resize: "none";
-  height: "45px";
+  resize: none;
+  height: 45px;
 }
 
 .searchBar-input {
-  width: "100%";
-  padding: "10px";
-  marginTop: "25px";
-  fontSize: "16px";
-  border: "1px solid #ccc";
-  borderRadius: "4px";
-  boxSizing: "border-box";
+  width: 100%;
+  padding: 10px;
+  margin-top: 25px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 45px;
+  box-sizing: border-box;
 }
 
 @keyframes logo-spin {
