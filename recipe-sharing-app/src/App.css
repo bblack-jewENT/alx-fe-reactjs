@@ -27,6 +27,11 @@ input {
   height: "45px";
 }
 
+textarea {
+  resize: "none";
+  height: "45px";
+}
+
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
