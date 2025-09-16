@@ -27,7 +27,7 @@
   height: 45px;
 }
 
-textarea {
+.form-textarea {
   resize: none;
   height: 45px;
 }
