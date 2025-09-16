@@ -16,6 +16,7 @@ const AddRecipeForm = () => {
 
   return (
     <form
+      className="form"
       onSubmit={handleSubmit}
     >
       <input
