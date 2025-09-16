@@ -32,6 +32,16 @@ textarea {
   height: "45px";
 }
 
+.searchBar-input {
+  width: "100%";
+  padding: "10px";
+  marginTop: "25px";
+  fontSize: "16px";
+  border: "1px solid #ccc";
+  borderRadius: "4px";
+  boxSizing: "border-box";
+}
+
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
