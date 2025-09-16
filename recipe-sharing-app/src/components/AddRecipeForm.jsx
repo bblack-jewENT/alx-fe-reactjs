@@ -19,9 +19,6 @@ const AddRecipeForm = () => {
       onSubmit={handleSubmit}
     >
       <input
-        style={{
-          height: "45px",
-        }}
         type="text"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
