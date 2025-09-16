@@ -38,10 +38,7 @@ const EditRecipeForm = ({ recipeId, onSave }) => {
         required
       />
       <textarea
-        style={{
-          resize: "none",
-          height: "45px",
-        }}
+        className="form-textarea"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
         placeholder="Description"
