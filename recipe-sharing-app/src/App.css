@@ -17,13 +17,13 @@
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
-form {
+.form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-input {
+.form-input {
   height: 45px;
 }
 
