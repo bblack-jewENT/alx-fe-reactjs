@@ -30,9 +30,7 @@ const EditRecipeForm = ({ recipeId, onSave }) => {
         className="form"
         onSubmit={handleSubmit}>
       <input
-        style={{
-          height: "45px",
-        }}
+        className="form-input"
         type="text"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
