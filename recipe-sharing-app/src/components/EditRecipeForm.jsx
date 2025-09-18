@@ -27,12 +27,13 @@ const EditRecipeForm = ({ recipeId, onSave }) => {
 
   return (
     <form
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "1rem",
-        }}
-        onSubmit={handleSubmit}>
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "1rem",
+      }}
+      onSubmit={handleSubmit}
+    >
       <input
         style={{
           height: "45px",
