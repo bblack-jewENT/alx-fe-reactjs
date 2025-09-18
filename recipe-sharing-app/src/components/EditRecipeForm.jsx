@@ -27,6 +27,7 @@ const EditRecipeForm = ({ recipeId, onSave }) => {
 
   return (
     <form
+<<<<<<< HEAD
       style={{
         display: "flex",
         flexDirection: "column",
@@ -34,10 +35,12 @@ const EditRecipeForm = ({ recipeId, onSave }) => {
       }}
       onSubmit={handleSubmit}
     >
+=======
+        className="form"
+        onSubmit={handleSubmit}>
+>>>>>>> 56224c408e3d263fe8b6724701f6848994ac20bd
       <input
-        style={{
-          height: "45px",
-        }}
+        className="form-input"
         type="text"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
@@ -45,10 +48,7 @@ const EditRecipeForm = ({ recipeId, onSave }) => {
         required
       />
       <textarea
-        style={{
-          resize: "none",
-          height: "45px",
-        }}
+        className="form-textarea"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
         placeholder="Description"
