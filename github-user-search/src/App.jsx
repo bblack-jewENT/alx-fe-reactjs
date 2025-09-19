@@ -1,30 +1,22 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import RecipeList from "./components/RecipeList";
-import AddRecipeForm from "./components/AddRecipeForm";
-import RecipeDetails from "./components/RecipeDetails";
-import SearchBar from "./components/SearchBar";
-import FavoritesList from "./components/FavoritesList";
-import RecommendationsList from "./components/RecommendationsList";
 import "./App.css";
 
 function App() {
   return (
     <Router>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              <SearchBar />
-              <RecipeList />
-              <AddRecipeForm />
-              <FavoritesList />
-              <RecommendationsList />
-            </>
-          }
-        />
-        <Route path="/recipe/:id" element={<RecipeDetails />} />
-      </Routes>
+      <div className="App">
+        <header>
+          <h1>GitHub User Search</h1>
+        </header>
+        <main>
+          <Routes>
+            <Route
+              path="/"
+              element={<div>Welcome to GitHub User Search</div>}
+            />
+          </Routes>
+        </main>
+      </div>
     </Router>
   );
 }
