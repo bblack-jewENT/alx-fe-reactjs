@@ -36,7 +36,14 @@ function Search() {
           placeholder="Enter GitHub username"
           required
         />
-        <button type="submit">Search</button>
+        <button
+          style={{
+            marginBottom: "20px",
+          }}
+          type="submit"
+        >
+          Search
+        </button>
       </form>
 
       {loading && <p>Loading...</p>}
