@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import HomePage from "./components/HomePage";
+import Search from "./components/Search";
 import "./App.css";
 
 function App() {
@@ -7,7 +7,7 @@ function App() {
     <Router>
       <div className="App">
         <header>
-          <HomePage />
+          <Search />
         </header>
         <main>
           <Routes>
