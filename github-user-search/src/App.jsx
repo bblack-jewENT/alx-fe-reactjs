@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import HomePage from "./components/HomePage";
 import "./App.css";
 
 function App() {
@@ -6,7 +7,7 @@ function App() {
     <Router>
       <div className="App">
         <header>
-          <h1>GitHub User Search</h1>
+          <HomePage />
         </header>
         <main>
           <Routes>
