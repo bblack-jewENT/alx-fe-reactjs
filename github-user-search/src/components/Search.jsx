@@ -84,258 +84,224 @@ function Search() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">
-            GitHub User Search
-          </h1>
-          <p className="text-lg text-gray-600">
-            Find GitHub users by username, location, and repository count
-          </p>
+    <div className="search-container">
+      <div className="search-title">
+        <h1 className="text-4xl font-bold text-gray-900 mb-2">
+          GitHub User Search
+        </h1>
+        <p>Find GitHub users by username, location, and repository count</p>
+      </div>
+
+      {/* Advanced Search Form */}
+      <div className="search-form">
+        <form onSubmit={handleSubmit}>
+          <div className="form-row">
+            <div className="form-group">
+              <label htmlFor="username" className="form-label">
+                Username
+              </label>
+              <input
+                type="text"
+                id="username"
+                name="username"
+                value={searchParams.username}
+                onChange={handleInputChange}
+                placeholder="Enter GitHub username"
+                className="form-input"
+                autoComplete="off"
+                aria-label="GitHub username"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="location" className="form-label">
+                Location
+              </label>
+              <input
+                type="text"
+                id="location"
+                name="location"
+                value={searchParams.location}
+                onChange={handleInputChange}
+                placeholder="e.g., San Francisco, CA"
+                className="form-input"
+                autoComplete="off"
+                aria-label="Location"
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="minRepos" className="form-label">
+                Minimum Repositories
+              </label>
+              <input
+                type="number"
+                id="minRepos"
+                name="minRepos"
+                value={searchParams.minRepos}
+                onChange={handleInputChange}
+                placeholder="e.g., 10"
+                min="0"
+                className="form-input"
+                autoComplete="off"
+                aria-label="Minimum repositories"
+              />
+            </div>
+            <div className="form-group">
+              <button
+                type="submit"
+                disabled={loading}
+                className="search-button"
+              >
+                {loading ? (
+                  <span>Searching...</span>
+                ) : (
+                  <span>Search Users</span>
+                )}
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      {/* Loading State */}
+      {loading && users.length === 0 && (
+        <div className="text-center py-8">
+          <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+          <p className="mt-2 text-gray-600">Loading...</p>
         </div>
+      )}
 
-        {/* Advanced Search Form */}
-        <div className="bg-white rounded-xl shadow-lg p-8 mb-8 border border-gray-100">
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <div className="space-y-2">
-                <label
-                  htmlFor="username"
-                  className="block text-sm font-semibold text-gray-800 mb-2"
-                >
-                  Username
-                </label>
-                <input
-                  type="text"
-                  id="username"
-                  name="username"
-                  value={searchParams.username}
-                  onChange={handleInputChange}
-                  placeholder="Enter GitHub username"
-                  className="w-full px-5 py-3 border-2 border-gray-200 rounded-xl shadow focus:outline-none focus:ring-4 focus:ring-blue-200 focus:border-blue-500 transition-all duration-200 hover:border-blue-400 bg-gray-50 focus:bg-white text-gray-900 placeholder-gray-400 text-base"
-                  autoComplete="off"
-                  aria-label="GitHub username"
-                />
-              </div>
+      {/* Error State */}
+      {error && (
+        <div className="bg-red-50 border border-red-200 rounded-md p-4 mb-6">
+          <p className="text-red-800">{error}</p>
+        </div>
+      )}
 
-              <div className="space-y-2">
-                <label
-                  htmlFor="location"
-                  className="block text-sm font-semibold text-gray-800 mb-2"
-                >
-                  Location
-                </label>
-                <input
-                  type="text"
-                  id="location"
-                  name="location"
-                  value={searchParams.location}
-                  onChange={handleInputChange}
-                  placeholder="e.g., San Francisco, CA"
-                  className="w-full px-5 py-3 border-2 border-gray-200 rounded-xl shadow focus:outline-none focus:ring-4 focus:ring-blue-200 focus:border-blue-500 transition-all duration-200 hover:border-blue-400 bg-gray-50 focus:bg-white text-gray-900 placeholder-gray-400 text-base"
-                  autoComplete="off"
-                  aria-label="Location"
-                />
-              </div>
+      {/* Results */}
+      {users.length > 0 && (
+        <div>
+          <div className="mb-4">
+            <p className="text-gray-600">
+              Found {totalCount.toLocaleString()} users
+            </p>
+          </div>
 
-              <div className="space-y-2">
-                <label
-                  htmlFor="minRepos"
-                  className="block text-sm font-semibold text-gray-800 mb-2"
-                >
-                  Minimum Repositories
-                </label>
-                <input
-                  type="number"
-                  id="minRepos"
-                  name="minRepos"
-                  value={searchParams.minRepos}
-                  onChange={handleInputChange}
-                  placeholder="e.g., 10"
-                  min="0"
-                  className="w-full px-5 py-3 border-2 border-gray-200 rounded-xl shadow focus:outline-none focus:ring-4 focus:ring-blue-200 focus:border-blue-500 transition-all duration-200 hover:border-blue-400 bg-gray-50 focus:bg-white text-gray-900 placeholder-gray-400 text-base"
-                  autoComplete="off"
-                  aria-label="Minimum repositories"
-                />
-              </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {users.map((user) => (
+              <div
+                key={user.id}
+                className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow"
+              >
+                <div className="flex items-center space-x-4 mb-4">
+                  <img
+                    src={user.avatar_url}
+                    alt={user.login}
+                    className="w-16 h-16 rounded-full"
+                  />
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900">
+                      {user.name || user.login}
+                    </h3>
+                    <p className="text-gray-600">@{user.login}</p>
+                  </div>
+                </div>
 
-              <div className="flex items-end">
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="w-full px-6 py-3 bg-gradient-to-r from-blue-500 to-blue-700 text-white font-bold rounded-xl shadow-lg hover:from-blue-600 hover:to-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transform transition-all duration-200 hover:scale-105 active:scale-95 tracking-wide text-base"
-                >
-                  {loading ? (
-                    <div className="flex items-center justify-center">
-                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
-                      Searching...
-                    </div>
-                  ) : (
-                    <div className="flex items-center justify-center">
+                {user.bio && (
+                  <p className="text-gray-700 text-sm mb-3 line-clamp-2">
+                    {user.bio}
+                  </p>
+                )}
+
+                <div className="space-y-2 text-sm text-gray-600 mb-4">
+                  {user.location && (
+                    <div className="flex items-center">
                       <svg
-                        className="w-5 h-5 mr-2"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
+                        className="w-4 h-4 mr-2"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
                       >
                         <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                          fillRule="evenodd"
+                          d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                          clipRule="evenodd"
                         />
                       </svg>
-                      Search Users
+                      {user.location}
                     </div>
                   )}
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
 
-        {/* Loading State */}
-        {loading && users.length === 0 && (
-          <div className="text-center py-8">
-            <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-            <p className="mt-2 text-gray-600">Loading...</p>
-          </div>
-        )}
-
-        {/* Error State */}
-        {error && (
-          <div className="bg-red-50 border border-red-200 rounded-md p-4 mb-6">
-            <p className="text-red-800">{error}</p>
-          </div>
-        )}
-
-        {/* Results */}
-        {users.length > 0 && (
-          <div>
-            <div className="mb-4">
-              <p className="text-gray-600">
-                Found {totalCount.toLocaleString()} users
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {users.map((user) => (
-                <div
-                  key={user.id}
-                  className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow"
-                >
-                  <div className="flex items-center space-x-4 mb-4">
-                    <img
-                      src={user.avatar_url}
-                      alt={user.login}
-                      className="w-16 h-16 rounded-full"
-                    />
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900">
-                        {user.name || user.login}
-                      </h3>
-                      <p className="text-gray-600">@{user.login}</p>
-                    </div>
-                  </div>
-
-                  {user.bio && (
-                    <p className="text-gray-700 text-sm mb-3 line-clamp-2">
-                      {user.bio}
-                    </p>
-                  )}
-
-                  <div className="space-y-2 text-sm text-gray-600 mb-4">
-                    {user.location && (
-                      <div className="flex items-center">
-                        <svg
-                          className="w-4 h-4 mr-2"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                        {user.location}
-                      </div>
-                    )}
-
-                    <div className="flex items-center">
-                      <svg
-                        className="w-4 h-4 mr-2"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                      {user.public_repos} repositories
-                    </div>
-
-                    <div className="flex items-center">
-                      <svg
-                        className="w-4 h-4 mr-2"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
-                      </svg>
-                      {user.followers} followers
-                    </div>
-                  </div>
-
-                  <a
-                    href={user.html_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center px-4 py-2 bg-gray-900 text-white text-sm font-medium rounded-md hover:bg-gray-800 transition-colors"
-                  >
-                    View Profile
+                  <div className="flex items-center">
                     <svg
-                      className="w-4 h-4 ml-2"
+                      className="w-4 h-4 mr-2"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                     >
-                      <path
-                        fillRule="evenodd"
-                        d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                        clipRule="evenodd"
-                      />
+                      <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                  </a>
+                    {user.public_repos} repositories
+                  </div>
+
+                  <div className="flex items-center">
+                    <svg
+                      className="w-4 h-4 mr-2"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
+                    </svg>
+                    {user.followers} followers
+                  </div>
                 </div>
-              ))}
-            </div>
 
-            {/* Load More Button */}
-            {hasMore && (
-              <div className="text-center mt-8">
-                <button
-                  onClick={loadMore}
-                  disabled={loading}
-                  className="px-6 py-3 bg-gray-600 text-white font-medium rounded-md shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                <a
+                  href={user.html_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center px-4 py-2 bg-gray-900 text-white text-sm font-medium rounded-md hover:bg-gray-800 transition-colors"
                 >
-                  {loading ? "Loading..." : "Load More"}
-                </button>
+                  View Profile
+                  <svg
+                    className="w-4 h-4 ml-2"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </a>
               </div>
-            )}
+            ))}
           </div>
-        )}
 
-        {/* No Results */}
-        {!loading &&
-          users.length === 0 &&
-          totalCount === 0 &&
-          searchParams.username && (
-            <div className="text-center py-8">
-              <p className="text-gray-600">
-                No users found matching your criteria.
-              </p>
+          {/* Load More Button */}
+          {hasMore && (
+            <div className="text-center mt-8">
+              <button
+                onClick={loadMore}
+                disabled={loading}
+                className="px-6 py-3 bg-gray-600 text-white font-medium rounded-md shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {loading ? "Loading..." : "Load More"}
+              </button>
             </div>
           )}
-      </div>
+        </div>
+      )}
+
+      {/* No Results */}
+      {!loading &&
+        users.length === 0 &&
+        totalCount === 0 &&
+        searchParams.username && (
+          <div className="text-center py-8">
+            <p className="text-gray-600">
+              No users found matching your criteria.
+            </p>
+          </div>
+        )}
     </div>
   );
 }
