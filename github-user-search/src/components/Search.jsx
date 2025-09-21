@@ -86,9 +86,7 @@ function Search() {
   return (
     <div className="search-container">
       <div className="search-title">
-        <h1 className="text-4xl font-bold text-gray-900 mb-2">
-          GitHub User Search
-        </h1>
+        <h1>GitHub User Search</h1>
         <p>Find GitHub users by username, location, and repository count</p>
       </div>
 
@@ -164,129 +162,80 @@ function Search() {
 
       {/* Loading State */}
       {loading && users.length === 0 && (
-        <div className="text-center py-8">
-          <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-          <p className="mt-2 text-gray-600">Loading...</p>
-        </div>
+        <div className="loading">Searching...</div>
       )}
 
       {/* Error State */}
-      {error && (
-        <div className="bg-red-50 border border-red-200 rounded-md p-4 mb-6">
-          <p className="text-red-800">{error}</p>
-        </div>
-      )}
+      {error && <div className="error">{error}</div>}
 
       {/* Results */}
       {users.length > 0 && (
-        <div>
-          <div className="mb-4">
-            <p className="text-gray-600">
+        <div className="results-container">
+          <div className="results-header">
+            <div className="results-count">
               Found {totalCount.toLocaleString()} users
-            </p>
+            </div>
+            <div className="pagination-info">
+              Showing {users.length} of {totalCount.toLocaleString()} results
+            </div>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="users-grid">
             {users.map((user) => (
-              <div
-                key={user.id}
-                className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow"
-              >
-                <div className="flex items-center space-x-4 mb-4">
+              <div key={user.id} className="user-card">
+                <div className="user-header">
                   <img
                     src={user.avatar_url}
                     alt={user.login}
-                    className="w-16 h-16 rounded-full"
+                    className="user-avatar"
                   />
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900">
-                      {user.name || user.login}
-                    </h3>
-                    <p className="text-gray-600">@{user.login}</p>
+                  <div className="user-info">
+                    <h3>{user.name || user.login}</h3>
+                    <p className="user-login">@{user.login}</p>
                   </div>
                 </div>
-
-                {user.bio && (
-                  <p className="text-gray-700 text-sm mb-3 line-clamp-2">
-                    {user.bio}
-                  </p>
-                )}
-
-                <div className="space-y-2 text-sm text-gray-600 mb-4">
-                  {user.location && (
-                    <div className="flex items-center">
-                      <svg
-                        className="w-4 h-4 mr-2"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                      {user.location}
+                <div className="user-details">
+                  {user.bio && (
+                    <div className="user-detail">
+                      <span className="user-detail-icon">📝</span>
+                      <span>{user.bio}</span>
                     </div>
                   )}
-
-                  <div className="flex items-center">
-                    <svg
-                      className="w-4 h-4 mr-2"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    {user.public_repos} repositories
+                  {user.location && (
+                    <div className="user-detail">
+                      <span className="user-detail-icon">📍</span>
+                      <span>{user.location}</span>
+                    </div>
+                  )}
+                  <div className="user-detail">
+                    <span className="user-detail-icon">📚</span>
+                    <span>{user.public_repos} repositories</span>
                   </div>
-
-                  <div className="flex items-center">
-                    <svg
-                      className="w-4 h-4 mr-2"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
-                    </svg>
-                    {user.followers} followers
+                  <div className="user-detail">
+                    <span className="user-detail-icon">👥</span>
+                    <span>{user.followers} followers</span>
                   </div>
                 </div>
-
-                <a
-                  href={user.html_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center px-4 py-2 bg-gray-900 text-white text-sm font-medium rounded-md hover:bg-gray-800 transition-colors"
-                >
-                  View Profile
-                  <svg
-                    className="w-4 h-4 ml-2"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
+                <div className="user-actions">
+                  <a
+                    href={user.html_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="profile-link"
                   >
-                    <path
-                      fillRule="evenodd"
-                      d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </a>
+                    View Profile
+                  </a>
+                </div>
               </div>
             ))}
           </div>
-
-          {/* Load More Button */}
           {hasMore && (
-            <div className="text-center mt-8">
-              <button
-                onClick={loadMore}
-                disabled={loading}
-                className="px-6 py-3 bg-gray-600 text-white font-medium rounded-md shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {loading ? "Loading..." : "Load More"}
-              </button>
-            </div>
+            <button
+              onClick={loadMore}
+              disabled={loading}
+              className="load-more-button"
+            >
+              {loading ? "Loading..." : "Load More"}
+            </button>
           )}
         </div>
       )}
@@ -296,11 +245,7 @@ function Search() {
         users.length === 0 &&
         totalCount === 0 &&
         searchParams.username && (
-          <div className="text-center py-8">
-            <p className="text-gray-600">
-              No users found matching your criteria.
-            </p>
-          </div>
+          <div className="loading">No users found matching your criteria.</div>
         )}
     </div>
   );
