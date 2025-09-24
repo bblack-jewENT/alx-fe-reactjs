@@ -7,7 +7,7 @@ function UserProfile() {
           src="https://images.stockcake.com/public/e/e/6/ee6071b7-ef42-45e4-ba8c-9fc44bbdfa22_large/coding-at-night-stockcake.jpg"
           alt="User"
         />
-        <h1 className="sm:text-lg md:text-xl text-blue-800 my-4">John Doe</h1>
+        <h1 className="sm:text-lg md:text-xl text-blue-800 my-4 hover:text-blue-500">John Doe</h1>
         <p className="text-gray-600 sm:text-sm md:text-base">
           Developer at Example Co. Loves to write code and explore new
           technologies.
@@ -18,5 +18,6 @@ function UserProfile() {
 }
 
 export default UserProfile;
+
 
 
