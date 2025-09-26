@@ -14,7 +14,9 @@ function App() {
           <Routes>
             <Route
               path="/"
-              element={<div className="pb-15">Welcome to GitHub User Search</div>}
+              element={<div style={{
+                padding-bottom: 25px;
+              }}>Welcome to GitHub User Search</div>}
             />
           </Routes>
         </main>
