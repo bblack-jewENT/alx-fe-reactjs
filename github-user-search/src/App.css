@@ -29,6 +29,10 @@ textarea {
   box-sizing: border-box;
 }
 
+.footer {
+  padding-bottom: 25px;
+}
+
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
