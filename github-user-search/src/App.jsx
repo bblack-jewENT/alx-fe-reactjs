@@ -14,7 +14,7 @@ function App() {
           <Routes>
             <Route
               path="/"
-              element={<div>Welcome to GitHub User Search</div>}
+              element={<div className="pb-15">Welcome to GitHub User Search</div>}
             />
           </Routes>
         </main>
