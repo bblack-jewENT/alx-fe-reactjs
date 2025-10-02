@@ -3,12 +3,47 @@
     "id": 1,
     "title": "Spaghetti Carbonara",
     "summary": "A classic Italian pasta dish with eggs, cheese, bacon, and black pepper.",
-    "image": "https://i.ibb.co/tpv1K0jJ/Spaghetti-Carbonara.jpg"
+    "image": "https://i.ibb.co/tpv1K0jJ/Spaghetti-Carbonara.jpg",
+    "ingredients": [
+      "200g spaghetti",
+      "100g pancetta or bacon, diced",
+      "2 large eggs",
+      "50g grated Parmesan cheese",
+      "Freshly ground black pepper",
+      "Salt"
+    ],
+    "instructions": [
+      "Bring a large pot of salted water to a boil. Cook spaghetti according to package instructions until al dente.",
+      "While pasta cooks, heat a skillet over medium heat. Add pancetta and cook until crispy, about 5-7 minutes.",
+      "In a bowl, whisk together eggs, Parmesan cheese, and a generous amount of black pepper.",
+      "Reserve 1 cup of pasta water, then drain spaghetti. Add hot spaghetti to the skillet with pancetta.",
+      "Remove from heat and quickly stir in the egg mixture, adding pasta water as needed to create a creamy sauce.",
+      "Serve immediately with extra Parmesan and black pepper."
+    ]
   },
   {
     "id": 2,
     "title": "Chicken Tikka Masala",
     "summary": "Chunks of grilled chicken (tikka) cooked in a smooth buttery & creamy tomato based gravy.",
-    "image": "https://i.ibb.co/HTmCkPsN/Chicken-Tikka-Masala.jpg"
+    "image": "https://i.ibb.co/HTmCkPsN/Chicken-Tikka-Masala.jpg",
+    "ingredients": [
+      "500g chicken breast, cut into chunks",
+      "1 cup plain yogurt",
+      "2 tbsp tikka masala spice blend",
+      "1 large onion, finely chopped",
+      "2 tomatoes, chopped",
+      "1 cup heavy cream",
+      "2 tbsp vegetable oil",
+      "Salt to taste",
+      "Fresh cilantro for garnish"
+    ],
+    "instructions": [
+      "In a bowl, mix yogurt, 1 tbsp tikka masala spice, and salt. Add chicken chunks and marinate for at least 30 minutes.",
+      "Heat oil in a skillet over medium heat. Cook marinated chicken until browned and cooked through, about 8-10 minutes. Remove and set aside.",
+      "In the same skillet, add more oil if needed. Sauté onion until golden, about 5 minutes.",
+      "Add tomatoes and remaining tikka masala spice. Cook until tomatoes are soft and oil separates.",
+      "Stir in cream and bring to a simmer. Add cooked chicken back to the sauce and simmer for 5 minutes.",
+      "Garnish with cilantro and serve with rice or naan."
+    ]
   }
 ]
