@@ -14,14 +14,12 @@ function RegistrationForm() {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      style={{ display: "flex", flexDirection: "column", width: "200px" }}
-    >
-      <h3 style={{ fontWeight: "bold" }}>Registration Form</h3>
+    <form onSubmit={handleSubmit}>
+      <h3 style={{ fontSize: "18px", fontFamily: "monospace" }}>
+        Registration Form
+      </h3>
 
       <input
-        style={{ marginBottom: "10px", padding: "8px" }}
         type="text"
         name="name"
         placeholder="Name"
@@ -29,7 +27,6 @@ function RegistrationForm() {
         onChange={handleChange}
       />
       <input
-        style={{ marginBottom: "10px", padding: "8px" }}
         type="email"
         name="email"
         placeholder="Email"
