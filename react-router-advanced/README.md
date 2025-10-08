@@ -1,11 +1,68 @@
-# React + Vite
+# React Router Advanced
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project demonstrates advanced React Router concepts including nested routes, dynamic routing, and protected routes.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### React Router Integration
+
+- Basic router setup in `App.jsx` with `BrowserRouter` configured in `main.jsx`
+- Route configuration using `Routes` and `Route` components
+
+### Nested Routes
+
+- Profile component contains nested routes for:
+  - `/profile/details` - ProfileDetails component
+  - `/profile/settings` - ProfileSettings component
+- Nested routes are handled within the Profile component using relative paths
+
+### Dynamic Routing
+
+- Blog posts with dynamic URLs: `/posts/:id`
+- Uses `useParams` hook to access route parameters
+- Example: `/posts/1`, `/posts/2`, etc.
+
+### Protected Routes
+
+- ProtectedRoute component wraps routes requiring authentication
+- Checks for authentication status in localStorage
+- Redirects unauthenticated users to `/login`
+- Profile routes are protected and require login
+
+## Route Structure
+
+```
+/                     - Home (not implemented)
+/login                - Login page
+/profile/*            - Protected profile routes
+  /profile/details    - Profile details (nested)
+  /profile/settings   - Profile settings (nested)
+/posts/:id            - Dynamic blog post route
+```
+
+## Authentication
+
+Simple authentication simulation using localStorage:
+
+- Login sets `isAuthenticated` to "true"
+- Protected routes check this value
+- Logout functionality not implemented (can be added)
+
+## Getting Started
+
+```bash
+npm install
+npm run dev
+```
+
+Navigate to the displayed localhost URL to test the routes.
+
+## Testing Routes
+
+1. **Public Routes**: `/posts/1` should display blog post content
+2. **Protected Routes**: `/profile` redirects to `/login` if not authenticated
+3. **Nested Routes**: `/profile/details` and `/profile/settings` work within profile
+4. **Authentication**: Login at `/login` to access protected routes
 
 ## React Compiler
 
