@@ -1,14 +1,12 @@
-import { useState } from 'react'
-import './App.css'
-import RegistrationForm from './components/RegistrationForm.jsx';
+import "./App.css";
+import RegistrationForm from "./components/RegistrationForm.jsx";
 
 function App() {
-  
   return (
     <>
       <RegistrationForm />
     </>
-  )
+  );
 }
 
 export default App;

@@ -1,36 +1,36 @@
 import { useState } from "react";
 
 function RegistrationForm() {
-  const [formData, setFormData] = useState({
-    username: "",
-    email: "",
-    password: "",
-  });
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevState) => ({ ...prevState, [name]: value }));
+    if (name === "username") setUsername(value);
+    else if (name === "email") setEmail(value);
+    else if (name === "password") setPassword(value);
   };
 
-  const validate = (data) => {
+  const validate = () => {
     const errs = {};
-    if (!data.username) errs.username = "Username is required";
-    if (!data.email) errs.email = "Email is required";
-    else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(data.email))
+    if (!username) errs.username = "Username is required";
+    if (!email) errs.email = "Email is required";
+    else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email))
       errs.email = "Invalid email address";
-    if (!data.password) errs.password = "Password is required";
-    else if (data.password.length < 6)
+    if (!password) errs.password = "Password is required";
+    else if (password.length < 6)
       errs.password = "Password must be at least 6 characters";
     return errs;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const validationErrors = validate(formData);
+    const validationErrors = validate();
     setErrors(validationErrors);
     if (Object.keys(validationErrors).length === 0) {
-      console.log(formData);
+      console.log({ username, email, password });
     }
   };
 
@@ -46,7 +46,7 @@ function RegistrationForm() {
         type="text"
         name="username"
         placeholder="Username"
-        value={formData.username}
+        value={username}
         onChange={handleChange}
       />
 
@@ -55,7 +55,7 @@ function RegistrationForm() {
         type="email"
         name="email"
         placeholder="Email"
-        value={formData.email}
+        value={email}
         onChange={handleChange}
       />
 
@@ -66,7 +66,7 @@ function RegistrationForm() {
         type="password"
         name="password"
         placeholder="Password"
-        value={formData.password}
+        value={password}
         onChange={handleChange}
       />
 
