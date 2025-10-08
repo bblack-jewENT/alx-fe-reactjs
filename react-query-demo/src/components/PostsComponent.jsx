@@ -1,26 +1,61 @@
-import { useQuery } from "@tanstack/react-query";
+// Data fetching component created
+import { useState } from "react";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 const PostsComponent = () => {
-  const { data, isLoading, error, refetch } = useQuery({
+  const queryClient = useQueryClient();
+  const [lastRefetchAt, setLastRefetchAt] = useState(null);
+
+  const { data, isLoading, error, isFetching, refetch } = useQuery({
     queryKey: ["posts"],
+    // simple fetcher using the browser fetch API
     queryFn: () =>
       fetch("https://jsonplaceholder.typicode.com/posts").then((res) =>
         res.json()
       ),
+    // demonstrate caching: mark data fresh for 5 minutes and keep in cache for 10
+    staleTime: 1000 * 60 * 5,
+    cacheTime: 1000 * 60 * 10,
+    refetchOnWindowFocus: false,
   });
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
 
+  const hasCache = !!queryClient.getQueryData(["posts"]);
+
   return (
     <div>
       <h1>Posts</h1>
-      <button onClick={refetch}>Refetch Posts</button>
+      <div style={{ marginBottom: 8 }}>
+        <button
+          onClick={() =>
+            refetch().then(() => {
+              setLastRefetchAt(new Date().toLocaleTimeString());
+            })
+          }
+        >
+          Refetch Posts
+        </button>
+        <button
+          style={{ marginLeft: 8 }}
+          onClick={() => queryClient.invalidateQueries(["posts"])}
+        >
+          Invalidate Cache
+        </button>
+      </div>
+
+      <div style={{ marginBottom: 8 }}>
+        <strong>Cache present:</strong> {hasCache ? "yes" : "no"} |{" "}
+        <strong>Fetching:</strong> {isFetching ? "yes" : "no"}
+        {lastRefetchAt ? <span> | last refetch: {lastRefetchAt}</span> : null}
+      </div>
+
       <ul>
         {data?.map((post) => (
-          <li key={post.id}>
-            <h2>{post.title}</h2>
-            <p>{post.body}</p>
+          <li key={post.id} style={{ marginBottom: 12 }}>
+            <h2 style={{ margin: 0 }}>{post.title}</h2>
+            <p style={{ margin: "4px 0 0" }}>{post.body}</p>
           </li>
         ))}
       </ul>
