@@ -6,21 +6,30 @@ const PostsComponent = () => {
   const queryClient = useQueryClient();
   const [lastRefetchAt, setLastRefetchAt] = useState(null);
 
-  const { data, isLoading, error, isFetching, refetch } = useQuery({
+  // Custom fetchPosts function
+  const fetchPosts = async () => {
+    const response = await fetch("https://jsonplaceholder.typicode.com/posts");
+    if (!response.ok) throw new Error("Network response was not ok");
+    return response.json();
+  };
+
+  const {
+    data,
+    isLoading,
+    error,
+    isFetching,
+    refetch,
+    isError, // explicitly include isError from useQuery
+  } = useQuery({
     queryKey: ["posts"],
-    // simple fetcher using the browser fetch API
-    queryFn: () =>
-      fetch("https://jsonplaceholder.typicode.com/posts").then((res) =>
-        res.json()
-      ),
-    // demonstrate caching: mark data fresh for 5 minutes and keep in cache for 10
+    queryFn: fetchPosts,
     staleTime: 1000 * 60 * 5,
     cacheTime: 1000 * 60 * 10,
     refetchOnWindowFocus: false,
   });
 
   if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
+  if (isError) return <div>Error: {error.message}</div>;
 
   const hasCache = !!queryClient.getQueryData(["posts"]);
 
