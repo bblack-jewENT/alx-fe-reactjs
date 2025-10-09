@@ -29,7 +29,13 @@ const PostsComponent = () => {
   });
 
   if (isLoading) return <div>Loading...</div>;
-  if (isError) return <div>Error: {error.message}</div>;
+  if (isError)
+    return (
+      <div>
+        <div>Error: {error.message}</div>
+        <button onClick={() => refetch()}>Retry</button>
+      </div>
+    );
 
   const hasCache = !!queryClient.getQueryData(["posts"]);
 
